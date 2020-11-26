@@ -8,7 +8,7 @@ export default class App extends Component {
     value2: Math.floor(Math.random() * 100),
     value3: Math.floor(Math.random() * 100),
     proposedAnswer: function () {
-      Math.floor(Math.random() * 3) + this.value1 + this.value2 + this.value3
+      return (Math.floor(Math.random() * 3) + this.value1 + this.value2 + this.value3);
     },
     numQuestions: 0,
     numCorrect: 0
@@ -16,10 +16,9 @@ export default class App extends Component {
 
   nextQuestion() {
     this.setState((currentState) => {
-      value1 = Math.floor(Math.random() * 100);
-      value2 = Math.floor(Math.random() * 100);
-      value3 = Math.floor(Math.random() * 100);
-      proposedAnswer = Math.floor(Math.random() * 3) + value1 + value2 + value3;
+      value1: Math.floor(Math.random() * 100);
+      value2: Math.floor(Math.random() * 100);
+      value3: Math.floor(Math.random() * 100);
     })
   }
 
@@ -27,8 +26,8 @@ export default class App extends Component {
     this.setState((currentState) => {
       const answer = currentState.value1 + currentState.value2 + currentState.value3 === currentState.proposedAnswer;
 
-      numCorrect = answer === response ? currentState.numCorrect + 1 : currentState.numCorrect;
-      numQuestions = currentState.numQuestions + 1;
+      numCorrect: answer === response ? currentState.numCorrect + 1 : currentState.numCorrect;
+      numQuestions: currentState.numQuestions + 1;
       this.nextQuestion();
     })
   }
