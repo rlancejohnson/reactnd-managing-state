@@ -4,13 +4,13 @@ export default class Question extends Component {
     constructor(props) {
         super(props)
 
-        const questionValues = this.setQuestionValues();
+        const values = this.setQuestionValues();
 
         this.state = {
-            value1: questionValues[0],
-            value2: questionValues[1],
-            value3: questionValues[2],
-            proposedAnswer: questionValues[3]
+            value1: values[0],
+            value2: values[1],
+            value3: values[2],
+            proposedAnswer: values[3]
         }
     }
 
@@ -23,17 +23,20 @@ export default class Question extends Component {
     }
 
     updateScore = event => {
+        const response = JSON.parse(event.target.name);
+        const sumTotal = this.state.value1 + this.state.value2 + this.state.value3;
+        const actualAnswer = sumTotal === this.state.proposedAnswer;
+        console.log(`${this.state.value1} + ${this.state.value2} + ${this.state.value3} = ${this.state.proposedAnswer}`, sumTotal, actualAnswer, response)
+
+        this.props.setScore(actualAnswer === response);
+
         const questionValues = this.setQuestionValues();
         this.setState(curState => ({
             value1: questionValues[0],
             value2: questionValues[1],
             value3: questionValues[2],
             proposedAnswer: questionValues[3]
-        }))
-
-        const actualAnswer = questionValues[0] + questionValues[1] + questionValues[2];
-
-        this.props.setScore((actualAnswer === questionValues[3]) === Boolean(event.target.name))
+        }));        
     }
 
     render() {
