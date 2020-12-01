@@ -33,9 +33,7 @@ export default class Question extends Component {
 
         const actualAnswer = questionValues[0] + questionValues[1] + questionValues[2];
 
-        console.log(actualAnswer, questionValues[3], event.target.name)
-
-        this.props.setScore((actualAnswer === questionValues[3]) === event.target.name)
+        this.props.setScore((actualAnswer === questionValues[3]) === Boolean(event.target.name))
     }
 
     render() {
